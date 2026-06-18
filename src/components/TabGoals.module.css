@@ -1,0 +1,91 @@
+.wrap {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border-bottom: 0.5px solid var(--border);
+  transition: opacity 0.2s;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.emoji {
+  font-size: 18px;
+  min-width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.desc {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.barTrack {
+  margin-top: 5px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.right {
+  font-size: 10px;
+  color: var(--text-secondary);
+  min-width: 54px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.doneBtn {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 0.5px solid #3B6D11;
+  background: #EAF3DE;
+  color: #3B6D11;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.doneText {
+  color: var(--text-hint);
+}
+
+.progress {
+  color: var(--text-secondary);
+}
+
+.hint {
+  font-size: 10px;
+  color: var(--text-hint);
+  text-align: center;
+}

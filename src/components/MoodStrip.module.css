@@ -1,0 +1,36 @@
+.strip {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 2px 1px 6px;
+  margin-bottom: 0.875rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.strip::-webkit-scrollbar { display: none; }
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 5px 7px;
+  border-radius: 10px;
+  border: 0.5px solid var(--border);
+  background: var(--bg-card);
+  transition: all 0.15s;
+  min-width: 58px;
+}
+.chip:hover, .chip.sel {
+  background: var(--bg-surface);
+  border-color: var(--border-md);
+}
+
+.lbl {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.2;
+}
