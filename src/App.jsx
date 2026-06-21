@@ -92,7 +92,7 @@ export default function App() {
           </div>
 
           {/* 곰돌이 */}
-          <Bear totals={data.totals} netScore={netScore} previewMood={previewMood} />
+          <Bear mood={activeMood} />
 
           {/* 무드 바 */}
           <div className={styles.moodBar}>

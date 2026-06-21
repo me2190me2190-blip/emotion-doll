@@ -93,17 +93,17 @@
   margin-left: auto;
   flex-shrink: 0;
   background: none;
-  border: 0.5px solid var(--border-sm);
+  border: 0.5px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 2px 6px;
   font-size: 11px;
   cursor: pointer;
-  color: var(--text-tertiary);
+  color: var(--text-hint);
   transition: all .15s;
   font-family: inherit;
   line-height: 1.4;
 }
-.deleteBtn:hover { color: var(--text-secondary); background: var(--bg-secondary); }
+.deleteBtn:hover { color: var(--text-secondary); background: var(--bg-surface); }
 .deleteBtnConfirm {
   background: #FCEBEB;
   color: #A32D2D;

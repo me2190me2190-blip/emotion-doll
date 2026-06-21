@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useAnalyze } from '../hooks/useAnalyze'
-import { CommentCard, pickComment } from './CommentCard'
 import styles from './TabInput.module.css'
 
 export function TabInput({ bearName, onSubmit, onReset }) {
   const [text, setText]       = useState('')
   const [lastMsg, setLastMsg] = useState('')
-  const [comment, setComment] = useState(null)
   const { analyze, loading, error } = useAnalyze()
 
   async function handleSubmit() {
@@ -16,24 +14,17 @@ export function TabInput({ bearName, onSubmit, onReset }) {
     const { summary, ...scores } = result
     onSubmit(scores, text.trim(), summary)
 
-    // 결과 메시지
     const labels = { anger:'분노', irritation:'짜증', anxiety:'불안', stress:'스트레스',
       resentment:'억울함', joy:'기쁨', excitement:'신남', contentment:'만족',
       serenity:'평온', gratitude:'감사' }
     const parts = Object.entries(scores).filter(([,v]) => v > 0)
       .map(([k,v]) => `${labels[k]||k} +${v}`).slice(0, 6)
     setLastMsg(`"${summary}" — ${parts.join(', ')}`)
-
-    // 부정 과반일 때 코멘트
-    setComment(pickComment(scores))
     setText('')
   }
 
   return (
     <div className="fade-in">
-      {/* 코멘트 카드 — 분석 결과 바로 위 */}
-      <CommentCard comment={comment} onClose={() => setComment(null)} />
-
       <div className={styles.card}>
         <label className={styles.label}>
           {bearName ? `${bearName}에게 오늘 있었던 일을 말해줘요` : '오늘 무슨 일이 있었나요?'}
