@@ -41,7 +41,6 @@ export function useEmotionStore() {
   function clearGoal(id) {
     setData(prev => ({ ...prev, clearedGoals: [...(prev.clearedGoals || []), id] }))
   }
-  }
 
   function resetAll() {
     setData(prev => ({ ...emptyData(), bearName: prev.bearName || '' }))
