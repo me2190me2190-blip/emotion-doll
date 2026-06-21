@@ -26,8 +26,21 @@ export function useEmotionStore() {
     setData(prev => ({ ...prev, logs: [log, ...prev.logs], totals: newTotals }))
   }
 
+  function deleteEntry(id) {
+    setData(prev => {
+      const log = prev.logs.find(l => l.id === id)
+      if (!log) return prev
+      const newTotals = { ...prev.totals }
+      Object.entries(log.scores || {}).forEach(([k, v]) => {
+        if (newTotals[k] != null) newTotals[k] = Math.max(0, newTotals[k] - (v || 0))
+      })
+      return { ...prev, logs: prev.logs.filter(l => l.id !== id), totals: newTotals }
+    })
+  }
+
   function clearGoal(id) {
     setData(prev => ({ ...prev, clearedGoals: [...(prev.clearedGoals || []), id] }))
+  }
   }
 
   function resetAll() {
@@ -43,5 +56,5 @@ export function useEmotionStore() {
     .reduce((a, k) => a + (data.totals[k] || 0), 0)
   const netScore = posTotal - negTotal
 
-  return { data, addEntry, clearGoal, resetAll, saveBearName, negTotal, posTotal, netScore }
+  return { data, addEntry, deleteEntry, clearGoal, resetAll, saveBearName, negTotal, posTotal, netScore }
 }

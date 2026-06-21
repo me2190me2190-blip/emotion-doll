@@ -7,6 +7,7 @@ import { TabInput } from './components/TabInput'
 import { TabGauge } from './components/TabGauge'
 import { TabLog } from './components/TabLog'
 import { TabGoals } from './components/TabGoals'
+import { MoodThermometer } from './components/MoodThermometer'
 import { useEmotionStore } from './hooks/useEmotionStore'
 import { EMOTIONS } from './constants'
 import styles from './App.module.css'
@@ -24,7 +25,7 @@ export default function App() {
   const [nameModalOpen, setNameModalOpen] = useState(false)
   const [stripOpen, setStripOpen] = useState(false)
   const [previewMood, setPreviewMood] = useState(null)
-  const { data, addEntry, clearGoal, resetAll, negTotal, posTotal, netScore, saveBearName } = useEmotionStore()
+  const { data, addEntry, deleteEntry, clearGoal, resetAll, negTotal, posTotal, netScore, saveBearName } = useEmotionStore()
 
   const handlePreview = useCallback((moodId) => {
     setPreviewMood(moodId)
@@ -137,7 +138,12 @@ export default function App() {
           />
         )}
         {tab === 'gauge' && <TabGauge totals={data.totals} negTotal={negTotal} posTotal={posTotal} netScore={netScore} />}
-        {tab === 'log'   && <TabLog logs={data.logs} />}
+        {tab === 'log'   && (
+          <>
+            <MoodThermometer logs={data.logs} />
+            <TabLog logs={data.logs} onDelete={deleteEntry} />
+          </>
+        )}
         {tab === 'goals' && <TabGoals totals={data.totals} negTotal={negTotal} clearedGoals={data.clearedGoals} onClear={clearGoal} />}
       </main>
     </div>
