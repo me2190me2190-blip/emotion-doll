@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import { Bear, BgScene } from './components/Bear'
 import { MoodStrip, MOODS } from './components/MoodStrip'
 import { RussellModal } from './components/RussellModal'
@@ -24,12 +24,14 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [nameModalOpen, setNameModalOpen] = useState(false)
   const [stripOpen, setStripOpen] = useState(false)
+  const previewTimerRef = useRef(null)
   const [previewMood, setPreviewMood] = useState(null)
   const { data, addEntry, deleteEntry, clearGoal, resetAll, negTotal, posTotal, netScore, saveBearName } = useEmotionStore()
 
   const handlePreview = useCallback((moodId) => {
-    setPreviewMood(moodId)
-    setTimeout(() => setPreviewMood(null), 2500)
+    clearTimeout(previewTimerRef.current)
+    // 이미 선택된 표정 다시 누르면 해제 (토글)
+    setPreviewMood(prev => prev === moodId ? null : moodId)
   }, [])
 
   const activeMood = previewMood ?? (() => {
