@@ -1,6 +1,6 @@
 .wrap {
-  background: var(--bg-card);
-  border: 0.5px solid var(--border);
+  background: rgba(255,255,255,0.45);
+  border: 0.5px solid rgba(0,0,0,0.13);
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 8px;
@@ -47,7 +47,7 @@
   margin-top: 5px;
   height: 3px;
   border-radius: 999px;
-  background: var(--bg-surface);
+  background: rgba(0,0,0,0.06);
   overflow: hidden;
 }
 

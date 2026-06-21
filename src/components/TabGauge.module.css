@@ -16,8 +16,8 @@
 }
 
 .card {
-  background: var(--bg-card);
-  border: 0.5px solid var(--border);
+  background: rgba(255,255,255,0.45);
+  border: 0.5px solid rgba(0,0,0,0.13);
   border-radius: var(--radius-sm);
   padding: 9px 11px;
 }
@@ -37,7 +37,7 @@
 .track {
   height: 4px;
   border-radius: 999px;
-  background: var(--bg-surface);
+  background: rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -52,8 +52,8 @@
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: var(--bg-card);
-  border: 0.5px solid var(--border);
+  background: rgba(255,255,255,0.45);
+  border: 0.5px solid rgba(0,0,0,0.13);
   border-radius: var(--radius-sm);
   margin-bottom: 8px;
 }
