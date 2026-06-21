@@ -1,5 +1,130 @@
 import React from 'react'
 
+/* 감정별 배경 SVG 장면 */
+const BG_SCENES = {
+  ecstatic: (
+    <>
+      <circle cx="50" cy="44" r="26" fill="#FFD740" opacity=".88"/>
+      <line x1="50" y1="8"  x2="50" y2="20" stroke="#FFD740" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="50" y1="68" x2="50" y2="80" stroke="#FFD740" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="12" y1="44" x2="24" y2="44" stroke="#FFD740" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="76" y1="44" x2="88" y2="44" stroke="#FFD740" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="22" y1="15" x2="31" y2="23" stroke="#FFD740" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="69" y1="65" x2="78" y2="73" stroke="#FFD740" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="22" y1="73" x2="31" y2="65" stroke="#FFD740" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="69" y1="23" x2="78" y2="15" stroke="#FFD740" strokeWidth="2.5" strokeLinecap="round"/>
+      <ellipse cx="310" cy="40" rx="34" ry="19" fill="white" opacity=".52"/>
+      <ellipse cx="337" cy="29" rx="24" ry="18" fill="white" opacity=".52"/>
+      <ellipse cx="285" cy="35" rx="20" ry="15" fill="white" opacity=".48"/>
+      <text x="328" y="52" fontSize="22" opacity=".75">✨</text>
+      <text x="366" y="100" fontSize="17" opacity=".62">⭐</text>
+      <text x="14"  y="168" fontSize="19" opacity=".52">🎉</text>
+      <text x="350" y="176" fontSize="15" opacity=".48">🎊</text>
+      <text x="10"  y="224" fontSize="21" opacity=".52">🌸</text>
+      <text x="362" y="220" fontSize="17" opacity=".46">🌼</text>
+    </>
+  ),
+  happy: (
+    <>
+      <ellipse cx="60"  cy="38" rx="42" ry="23" fill="white" opacity=".6"/>
+      <ellipse cx="88"  cy="27" rx="30" ry="21" fill="white" opacity=".6"/>
+      <ellipse cx="35"  cy="33" rx="25" ry="17" fill="white" opacity=".58"/>
+      <ellipse cx="308" cy="54" rx="34" ry="19" fill="white" opacity=".48"/>
+      <ellipse cx="334" cy="43" rx="25" ry="16" fill="white" opacity=".48"/>
+      <ellipse cx="360" cy="191" rx="30" ry="34" fill="#66BB6A" opacity=".66"/>
+      <ellipse cx="360" cy="174" rx="24" ry="28" fill="#81C784" opacity=".56"/>
+      <rect x="355" y="217" width="10" height="18" fill="#8D6E63" opacity=".62" rx="3"/>
+      <text x="8"   y="225" fontSize="16" opacity=".62">🌻</text>
+      <text x="36"  y="229" fontSize="14" opacity=".58">🌷</text>
+      <text x="338" y="229" fontSize="14" opacity=".58">🌸</text>
+    </>
+  ),
+  neutral: (
+    <>
+      <ellipse cx="80"  cy="50" rx="52" ry="28" fill="#ECEFF1" opacity=".76"/>
+      <ellipse cx="114" cy="38" rx="36" ry="24" fill="#ECEFF1" opacity=".76"/>
+      <ellipse cx="50"  cy="44" rx="28" ry="19" fill="#ECEFF1" opacity=".73"/>
+      <ellipse cx="302" cy="60" rx="46" ry="25" fill="#ECEFF1" opacity=".58"/>
+      <ellipse cx="336" cy="48" rx="32" ry="20" fill="#ECEFF1" opacity=".56"/>
+      <rect x="0"   y="204" width="420" height="30" fill="#CFD8DC" opacity=".3"/>
+      <ellipse cx="34"  cy="184" rx="23" ry="28" fill="#90A4AE" opacity=".46"/>
+      <rect x="30"  y="209" width="8"  height="18" fill="#78909C" opacity=".46" rx="2"/>
+      <ellipse cx="378" cy="188" rx="21" ry="25" fill="#90A4AE" opacity=".36"/>
+      <rect x="374" y="210" width="8"  height="16" fill="#78909C" opacity=".36" rx="2"/>
+    </>
+  ),
+  tired: (
+    <>
+      <circle cx="366" cy="48" r="26" fill="#FFE082" opacity=".76"/>
+      <circle cx="378" cy="38" r="20" fill="#FFF9C4" opacity=".56"/>
+      <text x="44"  y="56"  fontSize="13" opacity=".43" fill="#8D6E63">★</text>
+      <text x="82"  y="38"  fontSize="11" opacity=".34" fill="#8D6E63">★</text>
+      <text x="290" y="80"  fontSize="19" opacity=".34" fill="#78909C">z</text>
+      <text x="310" y="62"  fontSize="14" opacity=".26" fill="#78909C">z</text>
+      <text x="326" y="48"  fontSize="10" opacity=".2"  fill="#78909C">z</text>
+      <rect x="0"   y="208" width="420" height="24" fill="#A5D6A7" opacity=".26"/>
+      <ellipse cx="34"  cy="186" rx="24" ry="30" fill="#546E7A" opacity=".28"/>
+      <rect x="29"  y="212" width="10" height="16" fill="#455A64" opacity=".28" rx="2"/>
+    </>
+  ),
+  worried: (
+    <>
+      <ellipse cx="102" cy="48" rx="70" ry="35" fill="#78909C" opacity=".5"/>
+      <ellipse cx="140" cy="34" rx="50" ry="30" fill="#90A4AE" opacity=".46"/>
+      <ellipse cx="63"  cy="42" rx="38" ry="26" fill="#78909C" opacity=".42"/>
+      <ellipse cx="292" cy="56" rx="62" ry="32" fill="#78909C" opacity=".4"/>
+      <ellipse cx="327" cy="42" rx="42" ry="26" fill="#90A4AE" opacity=".36"/>
+      <line x1="86"  y1="88"  x2="78"  y2="110" stroke="#90CAF9" strokeWidth="1.6" opacity=".58" strokeLinecap="round"/>
+      <line x1="114" y1="92"  x2="106" y2="115" stroke="#90CAF9" strokeWidth="1.6" opacity=".52" strokeLinecap="round"/>
+      <line x1="142" y1="86"  x2="134" y2="108" stroke="#90CAF9" strokeWidth="1.6" opacity=".46" strokeLinecap="round"/>
+      <line x1="282" y1="90"  x2="274" y2="110" stroke="#90CAF9" strokeWidth="1.6" opacity=".46" strokeLinecap="round"/>
+      <path d="M198 30 L187 58 L198 58 L185 86" stroke="#FFF176" strokeWidth="2.8" fill="none" opacity=".68" strokeLinecap="round" strokeLinejoin="round"/>
+      <ellipse cx="76"  cy="228" rx="32" ry="8" fill="#90CAF9" opacity=".36"/>
+      <ellipse cx="322" cy="232" rx="26" ry="7" fill="#90CAF9" opacity=".32"/>
+    </>
+  ),
+  angry: (
+    <>
+      <ellipse cx="210" cy="244" rx="188" ry="65" fill="#FF5722" opacity=".17"/>
+      <path d="M26 224 Q34 192 42 214 Q46 182 54 204 Q58 170 66 198 Q62 232 26 224Z" fill="#FF5722" opacity=".44"/>
+      <path d="M32 224 Q38 204 44 219 Q48 199 52 214 Q48 230 32 224Z" fill="#FF8A65" opacity=".5"/>
+      <path d="M352 222 Q360 190 368 212 Q372 180 380 202 Q376 232 352 222Z" fill="#FF5722" opacity=".4"/>
+      <path d="M358 222 Q364 202 370 217 Q374 197 378 212 Q374 230 358 222Z" fill="#FF8A65" opacity=".44"/>
+      <text x="20"  y="82"  fontSize="24" opacity=".38">💢</text>
+      <text x="374" y="77"  fontSize="20" opacity=".34">💢</text>
+      <text x="16"  y="160" fontSize="15" opacity=".26">💢</text>
+    </>
+  ),
+  exhausted: (
+    <>
+      <text x="36"  y="48"  fontSize="13" opacity=".36" fill="#B0BEC5">★</text>
+      <text x="76"  y="34"  fontSize="11" opacity=".3"  fill="#B0BEC5">★</text>
+      <text x="362" y="42"  fontSize="12" opacity=".34" fill="#B0BEC5">★</text>
+      <circle cx="54"  cy="52" r="24" fill="#CFD8DC" opacity=".52"/>
+      <circle cx="63"  cy="43" r="18" fill="#ECEFF1" opacity=".42"/>
+      <text x="292" y="78"  fontSize="22" opacity=".3"  fill="#90A4AE">Z</text>
+      <text x="318" y="56"  fontSize="16" opacity=".22" fill="#90A4AE">Z</text>
+      <text x="338" y="40"  fontSize="11" opacity=".17" fill="#90A4AE">Z</text>
+      <rect x="16"  y="218" width="388" height="18" fill="#546E7A" opacity=".26" rx="6"/>
+      <rect x="16"  y="207" width="62"  height="28" fill="#546E7A" opacity=".24" rx="5"/>
+      <rect x="342" y="207" width="62"  height="28" fill="#546E7A" opacity=".24" rx="5"/>
+    </>
+  ),
+}
+
+export function BgScene({ mood }) {
+  return (
+    <svg
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+      viewBox="0 0 420 242"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {BG_SCENES[mood] || null}
+    </svg>
+  )
+}
+
 function getMood(totals, netScore) {
   const anger = totals.anger || 0
   const anxiety = totals.anxiety || 0

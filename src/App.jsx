@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Bear } from './components/Bear'
+import { Bear, BgScene } from './components/Bear'
 import { MoodStrip, MOODS } from './components/MoodStrip'
 import { RussellModal } from './components/RussellModal'
 import { BearNameModal } from './components/BearNameModal'
@@ -79,7 +79,8 @@ export default function App() {
 
       {/* 스테이지 */}
       <section className={styles.stage} data-mood={activeMood}>
-        {/* 배경은 CSS data-mood로 처리 */}
+        {/* 배경 SVG 장면 */}
+        <BgScene mood={activeMood} />
         <div className={styles.stageInner}>
           {/* 이름 뱃지 */}
           <div className={styles.nameWrap}>
