@@ -8,7 +8,8 @@ function fmtDate(iso) {
 }
 
 export function TabLog({ logs, onDelete }) {
-  const [filterDate, setFilterDate] = useState('')
+  const today = new Date().toISOString().slice(0, 10)
+  const [filterDate, setFilterDate] = useState(today)
   const [confirmId, setConfirmId] = useState(null)
 
   const filtered = filterDate
